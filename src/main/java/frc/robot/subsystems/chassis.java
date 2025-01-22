@@ -104,24 +104,24 @@ public class chassis extends SubsystemBase {
     double Tag_Area = LimelightHelpers.getTA("limelight"); // Use your actual limelight name
     double Tag_X = LimelightHelpers.getTX("limelight");    // Use your actual limelight name
     
-    if (Tag_Area < 4 && Tag_Area > -4 || Tag_Area == 0) {
+    if (Tag_X < 6 && Tag_X > -6 || Tag_X == 0) {
+      stop();
+      if (Tag_Area < 6 && Tag_Area > 4 || Tag_Area == 0) {
         stop();
-        if (Tag_X < 4 && Tag_X > -4 || Tag_X == 0) {
-            stop();
-        }
-        else if (Tag_X >= 4) {
-            left();
-        }
-        else {
-            right();
-        }
-    }
-    else if (Tag_Area >= 4) {
+      }
+      else if (Tag_Area >= 6) {
         backward();
+      }
+      else if (Tag_Area <= 4) {
+        forward();
+      }
+    } 
+    else if (Tag_X >= 6) {
+      right();
     }
     else {
-        forward();
-    }
+      left();
+    }  
 }
 
   public class AutoTargetCommand extends Command {

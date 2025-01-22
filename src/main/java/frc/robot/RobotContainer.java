@@ -51,8 +51,7 @@ public class RobotContainer {
    */
   
   private void configureBindings() {
-    new JoystickButton(m_driverController, 1).whileTrue(new RunCommand(mChassis::autotarget)).onFalse(new 
-    InstantCommand(mChassis::stop));
+    new JoystickButton(m_driverController, 1).whileTrue(new RunCommand(mChassis::autotarget)).onFalse(new InstantCommand(mChassis::stop));
     // Schedule exampleMethodCommand when the Xbox controller's B button is pressed,  
     // cancelling on release.
     
