@@ -6,10 +6,8 @@ package frc.robot;
 
 import frc.robot.commands.Autos;  
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.SmartPhotonvision;
 import frc.robot.subsystems.Candle;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Photonvision;
 import frc.robot.subsystems.chassis;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,9 +28,6 @@ public class RobotContainer {
   private final chassis mChassis = new chassis();
   private final Candle mCandle = new Candle();
   private final Limelight mlimelight = new Limelight();
-  private final Photonvision mPhotonvision = new Photonvision();
-  private final SmartPhotonvision mSmartPhotonvision = new SmartPhotonvision(mChassis, mPhotonvision);
-  
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final XboxController m_driverController = new XboxController(0); 
@@ -56,11 +51,11 @@ public class RobotContainer {
    */
   
   private void configureBindings() {
-    // new JoystickButton(m_driverController, 1).whileTrue(new RunCommand(mChassis::autotarget)).onFalse(new InstantCommand(mChassis::stop));
+    new JoystickButton(m_driverController, 1).whileTrue(new RunCommand(mChassis::autotarget)).onFalse(new InstantCommand(mChassis::stop));
     // Schedule exampleMethodCommand when the Xbox controller's B button is pressed,  
     // cancelling on release.
-    new JoystickButton(m_driverController, 1).whileTrue(new RunCommand(mChassis::autotarget)).onFalse(new InstantCommand(mChassis::stop));
-    new JoystickButton(m_driverController, 2).whileTrue(new RunCommand(mSmartPhotonvision::letsgo)).onFalse(new InstantCommand(mChassis::stop));
+    
+
     
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

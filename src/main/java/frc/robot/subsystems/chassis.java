@@ -23,10 +23,11 @@ public class chassis extends SubsystemBase {
   public final WPI_VictorSPX RearLeft = new WPI_VictorSPX(chassisID.RL);
   public final WPI_VictorSPX Rearright = new WPI_VictorSPX(chassisID.RR);
 
+
   public DifferentialDrive tank = new DifferentialDrive(Frontleft, Frontright);
-
-  /** Creates a new ExampleSubsystem. */
-
+  
+/** Creates a new ExampleSubsystem. */
+  
   public chassis() {
     Frontleft.configFactoryDefault();
     Frontright.configFactoryDefault();
@@ -34,67 +35,65 @@ public class chassis extends SubsystemBase {
     Rearright.configFactoryDefault();
 
     Frontleft.setInverted(false);
-    Frontright.setInverted(false);
+    Frontright.setInverted(false); 
     RearLeft.setInverted(false);
     Rearright.setInverted(false);
 
     RearLeft.follow(Frontleft);
     Rearright.follow(Frontright);
-  }
-
-  public void drive(double X, double Y) {
+    }
+  
+  public void drive(double X, double Y){
     tank.arcadeDrive(-X, Y);
   }
-
-  public void forward() {
+  
+  public void forward(){
     Frontleft.set(0.3);
     Frontright.set(0.3);
     RearLeft.set(0.3);
     Rearright.set(0.3);
     Frontleft.setInverted(false);
-    Frontright.setInverted(true);
+    Frontright.setInverted(true); 
     RearLeft.setInverted(false);
     Rearright.setInverted(true);
-
+    
   }
 
-  public void backward() {
+  public void backward(){
     Frontleft.set(0.3);
     Frontright.set(0.3);
     RearLeft.set(0.3);
     Rearright.set(0.3);
     Frontleft.setInverted(true);
-    Frontright.setInverted(false);
+    Frontright.setInverted(false); 
     RearLeft.setInverted(true);
     Rearright.setInverted(false);
-
+    
   }
-
-  public void right() {
+  public void right(){
     Frontleft.set(0.3);
     Frontright.set(0.3);
     RearLeft.set(0.3);
     Rearright.set(0.3);
     Frontleft.setInverted(false);
-    Frontright.setInverted(false);
+    Frontright.setInverted(false); 
     RearLeft.setInverted(false);
     Rearright.setInverted(false);
-
+    
   }
-
-  public void left() {
+  public void left(){
     Frontleft.set(0.3);
     Frontright.set(0.3);
     RearLeft.set(0.3);
     Rearright.set(0.3);
     Frontleft.setInverted(true);
-    Frontright.setInverted(true);
+    Frontright.setInverted(true); 
     RearLeft.setInverted(true);
     Rearright.setInverted(true);
-
+    
   }
 
-  public void stop() {
+  public void stop(){
     Frontleft.set(0);
     Frontright.set(0);
     RearLeft.set(0);
@@ -103,42 +102,46 @@ public class chassis extends SubsystemBase {
 
   public void autotarget() {
     double Tag_Area = LimelightHelpers.getTA("limelight"); // Use your actual limelight name
-    double Tag_X = LimelightHelpers.getTX("limelight"); // Use your actual limelight name
-
+    double Tag_X = LimelightHelpers.getTX("limelight");    // Use your actual limelight name
+    
     if (Tag_X < 6 && Tag_X > -6 || Tag_X == 0) {
       stop();
       if (Tag_Area < 6 && Tag_Area > 4 || Tag_Area == 0) {
         stop();
-      } else if (Tag_Area >= 6) {
+      }
+      else if (Tag_Area >= 6) {
         backward();
-      } else if (Tag_Area <= 4) {
+      }
+      else if (Tag_Area <= 4) {
         forward();
       }
-    } else if (Tag_X >= 6) {
+    } 
+    else if (Tag_X >= 6) {
       right();
-    } else {
-      left();
     }
-  }
+    else {
+      left();
+    }  
+}
 
   public class AutoTargetCommand extends Command {
     private final chassis mChassis;
 
     public AutoTargetCommand(chassis subsystem) {
-      mChassis = subsystem;
-      addRequirements(subsystem);
+        mChassis = subsystem;
+        addRequirements(subsystem);
     }
 
     @Override
     public void execute() {
-      mChassis.autotarget();
+        mChassis.autotarget();
     }
 
     @Override
     public void end(boolean interrupted) {
-      mChassis.stop();
+        mChassis.stop();
     }
-  }
+}
 
   public Command exampleMethodCommand() {
     // Inline construction of command goes here.
@@ -147,15 +150,14 @@ public class chassis extends SubsystemBase {
         () -> {
           /* one-time action goes here */
         });
-  }
-
+    }
+  
   /**
-   * An example method querying a boolean state of the subsystem (for example, a
-   * digital sensor).
+   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */
-
+  
   public boolean exampleCondition() {
     // Query some boolean state, such as a digital sensor.
     return false;
@@ -163,7 +165,8 @@ public class chassis extends SubsystemBase {
 
   @Override
   public void periodic() {
-  }
+}
+    
 
   @Override
   public void simulationPeriodic() {
