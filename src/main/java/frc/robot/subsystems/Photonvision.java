@@ -9,18 +9,20 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Photonvision extends SubsystemBase {
     // Create an instance of the PhotonCamera
-    PhotonCamera camera = new PhotonCamera("photonvision");
+    PhotonCamera camera = new PhotonCamera("limelight");
     PhotonTrackedTarget target;
 
     // Variables to store the target data
     double Yaw;
     double Area;
     double Pitch;
+    double ID;
 
     @Override
     public void periodic() {
         // Get the latest result from the camera
         PhotonPipelineResult result = camera.getLatestResult();
+        System.out.println(result.hasTargets());
 
         // Check if there are any targets detected
         if (result.hasTargets()) {
@@ -31,15 +33,13 @@ public class Photonvision extends SubsystemBase {
             Yaw = target.getYaw();
             Area = target.getArea();
             Pitch = target.getPitch();
+            ID = target.getFiducialId();
 
             // Display the target data on the SmartDashboard
-            SmartDashboard.putNumber("Yaw", Yaw);
-            SmartDashboard.putNumber("Area", Area);
-            SmartDashboard.putNumber("Pitch", Pitch);
-            SmartDashboard.putNumber("Fiducial ID", target.getFiducialId());
-        } else {
-            // If no target is found, display a message on the SmartDashboard
-            SmartDashboard.putString("Status", "No Target Found");
+            SmartDashboard.putNumber("Tag_Yaw", Yaw);
+            SmartDashboard.putNumber("Tag_Area", Area);
+            SmartDashboard.putNumber("Tag_Pitch", Pitch);
+            SmartDashboard.putNumber("Tag_ID", target.getFiducialId());
         }
     }
 }

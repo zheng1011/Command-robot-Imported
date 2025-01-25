@@ -9,6 +9,8 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Candle;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.chassis;
+import frc.robot.subsystems.Photonvision;
+import edu.wpi.first.wpilibj.PS5Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -28,10 +30,11 @@ public class RobotContainer {
   private final chassis mChassis = new chassis();
   private final Candle mCandle = new Candle();
   private final Limelight mlimelight = new Limelight();
+  private final Photonvision mPV = new Photonvision();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final XboxController m_driverController = new XboxController(0); 
-
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
