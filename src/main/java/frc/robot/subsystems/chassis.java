@@ -105,27 +105,27 @@ public class chassis extends SubsystemBase {
     double Tag_Area = SmartDashboard.getNumber("Tag_Area", 0);
     double Tag_X = SmartDashboard.getNumber("Tag_Yaw", 0);
     
-    if (Tag_X < 13 && Tag_X > -14 || Tag_X == 0) {
-      stop();
+   
       if (Tag_Area < 6 && Tag_Area > 4 || Tag_Area == 0) {
-        stop();
+          stop();
       }
-      else if (Tag_Area >= 6) {
-        backward();
+        else if (Tag_Area >= 6) {
+          backward();
       }
-      else if (Tag_Area <= 4) {
-        forward();
+        else if (Tag_Area <= 4) {
+          forward();
+      if (Tag_X < 13 && Tag_X > -14 || Tag_X == 0) {
+          stop();
+        }
+        else if (Tag_X >= 13) {
+          right();
+        }
+        else if (Tag_X<=-14){
+          left();
+        }
       }
-    } 
-    else if (Tag_X >= 13) {
-      right();
-    }
-    else {
-      left();
-    }  
-}
-
-  public class AutoTargetCommand extends Command {
+  }
+  class AutoTargetCommand extends Command {
     private final chassis mChassis;
 
     public AutoTargetCommand(chassis subsystem) {
